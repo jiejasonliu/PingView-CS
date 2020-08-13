@@ -3,8 +3,8 @@ using System.Net.NetworkInformation;
 using System.Windows.Forms;
 
 namespace PingView_WF_App {
-    public partial class Form1 : Form {
-        public Form1() {
+    public partial class PingView : Form {
+        public PingView() {
             InitializeComponent();
         }
 

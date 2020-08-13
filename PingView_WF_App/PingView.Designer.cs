@@ -1,5 +1,5 @@
 ﻿namespace PingView_WF_App {
-    partial class Form1 {
+    partial class PingView {
         /// <summary>
         /// Required designer variable.
         /// </summary>
