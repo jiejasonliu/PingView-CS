@@ -26,7 +26,7 @@
             this.ipLabel = new System.Windows.Forms.Label();
             this.ipTextbox = new System.Windows.Forms.TextBox();
             this.pingButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.resultLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ipLabel
@@ -59,27 +59,27 @@
             this.pingButton.UseVisualStyleBackColor = false;
             this.pingButton.Click += new System.EventHandler(this.PingButton_Click);
             // 
-            // label1
+            // resultLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Orbitron", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(54, 198);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Standby...";
+            this.resultLabel.AutoSize = true;
+            this.resultLabel.Font = new System.Drawing.Font("Orbitron", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resultLabel.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.resultLabel.Location = new System.Drawing.Point(54, 198);
+            this.resultLabel.Name = "resultLabel";
+            this.resultLabel.Size = new System.Drawing.Size(100, 20);
+            this.resultLabel.TabIndex = 3;
+            this.resultLabel.Text = "Standby...";
             // 
-            // Form1
+            // PingView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(481, 257);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.pingButton);
             this.Controls.Add(this.ipTextbox);
             this.Controls.Add(this.ipLabel);
-            this.Name = "Form1";
+            this.Name = "PingView";
             this.Text = "PingView (C#)";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -91,7 +91,7 @@
         private System.Windows.Forms.Label ipLabel;
         private System.Windows.Forms.TextBox ipTextbox;
         private System.Windows.Forms.Button pingButton;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label resultLabel;
     }
 }
 
