@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Net;
-using System.Net.NetworkInformation;
 using System.Windows.Forms;
 
 namespace PingView_WF_App {
@@ -15,12 +13,37 @@ namespace PingView_WF_App {
             // check if ip is valid
             if (PingViewHelper.IsValidIP(ipText)) {
                 resultLabel.Text = "Running ping test...";
+                if (Pinger.Ping(ipText)) {
+                    double ping = Pinger.Reply.RoundtripTime;
+                    string host = Pinger.Reply.Address.ToString();
+                    resultLabel.Text = $"{ping}ms -- {host}";
+                }
+                else {
+                    // discard if in progress
+                    if (!Pinger.InProgress) {
+                        ShowErrorNetworkError();
+                    }
+                }
             }
             // input is empty or not a valid ip
             else {
-                MessageBox.Show("You must enter a valid IP address!", "PingView (C#) Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ShowErrorInvalidIP();
             }
 
+        }
+
+        private void ShowErrorInvalidIP() {
+            MessageBox.Show("You must enter a valid IP address.", "PingView (C#) Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            Standby();
+        }
+
+        private void ShowErrorNetworkError() {
+            MessageBox.Show("There was a network error or the host could not be resolved.", "PingView (C#) Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Standby();
+        }
+
+        private void Standby() {
+            resultLabel.Text = "Standby...";
         }
     }
 }

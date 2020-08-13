@@ -17,7 +17,7 @@ namespace PingView_WF_App {
         /// </summary>
         public static PingReply Reply { get; private set; }
 
-        private static bool InProgress = false;
+        public static bool InProgress = false;
 
         /// <summary>
         /// Requests a new ping query to the supplied host.
