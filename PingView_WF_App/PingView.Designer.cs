@@ -27,6 +27,7 @@
             this.ipTextbox = new System.Windows.Forms.TextBox();
             this.pingButton = new System.Windows.Forms.Button();
             this.resultLabel = new System.Windows.Forms.Label();
+            this.avgTTL = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // ipLabel
@@ -70,11 +71,24 @@
             this.resultLabel.TabIndex = 3;
             this.resultLabel.Text = "Standby...";
             // 
+            // avgTTL
+            // 
+            this.avgTTL.AutoSize = true;
+            this.avgTTL.Checked = true;
+            this.avgTTL.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.avgTTL.Location = new System.Drawing.Point(329, 126);
+            this.avgTTL.Name = "avgTTL";
+            this.avgTTL.Size = new System.Drawing.Size(90, 17);
+            this.avgTTL.TabIndex = 4;
+            this.avgTTL.Text = "Average Ping";
+            this.avgTTL.UseVisualStyleBackColor = true;
+            // 
             // PingView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(481, 257);
+            this.Controls.Add(this.avgTTL);
             this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.pingButton);
             this.Controls.Add(this.ipTextbox);
@@ -92,6 +106,7 @@
         private System.Windows.Forms.TextBox ipTextbox;
         private System.Windows.Forms.Button pingButton;
         private System.Windows.Forms.Label resultLabel;
+        private System.Windows.Forms.CheckBox avgTTL;
     }
 }
 
