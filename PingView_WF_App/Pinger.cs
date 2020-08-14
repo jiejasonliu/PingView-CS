@@ -102,6 +102,10 @@ namespace PingView_WF_App {
             // update progress
             InProgress = false;
 
+            // handle case for all packets lost
+            if (discarded == timesToPing)
+                return -1;
+
             return sumPing / (timesToPing - discarded);
         }
     }
