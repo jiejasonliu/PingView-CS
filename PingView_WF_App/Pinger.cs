@@ -19,7 +19,30 @@ namespace PingView_WF_App {
         /// </summary>
         public static PingReply Reply { get; private set; }
 
-        public static bool InProgress = false;
+        public static bool InProgress;
+
+        // initialize ping service and options
+        private static Ping pingSender;
+        private static PingOptions options;
+        private static byte[] buffer;
+        private static int timeout;
+
+        /// <summary>
+        /// Run this before using a Pinger object.
+        /// </summary>
+        public static void Init() {
+            InProgress = false;
+
+            pingSender = new Ping();
+            options = new PingOptions();
+
+            // use default TTL (128), but change fragmentation settings
+            options.DontFragment = true;
+
+            string data = "aaaabcdefghijklmnopqrstuvwxyzzzz";
+            buffer = Encoding.ASCII.GetBytes(data);
+            timeout = 120;
+        }
 
         /// <summary>
         /// Requests a new ping query to the supplied host.
@@ -34,18 +57,6 @@ namespace PingView_WF_App {
             // reset PingReply data
             Reply = null;
             InProgress = true;
-
-            // initialize ping service and options
-            Ping pingSender = new Ping();
-            PingOptions options = new PingOptions();
-
-            // use default TTL (128), but change fragmentation settings
-            options.DontFragment = true;
-
-            // buffer of 32 bytes (32 chars)
-            string data = "aaaabcdefghijklmnopqrstuvwxyzzzz";
-            byte[] buffer = Encoding.ASCII.GetBytes(data);
-            int timeout = 120;
 
             // ping query
             Reply = pingSender.Send(ipAddress, timeout, buffer, options);
@@ -76,20 +87,6 @@ namespace PingView_WF_App {
 
             // total ping
             long sumPing = 0;
-            int lastDropped = 0;
-
-            // initialize ping service and options
-            Ping pingSender = new Ping();
-            PingOptions options = new PingOptions();
-
-            // use default TTL (128), but change fragmentation settings
-            options.DontFragment = true;
-
-            // buffer of 32 bytes (32 chars)
-            string data = "aaaabcdefghijklmnopqrstuvwxyzzzz";
-            byte[] buffer = Encoding.ASCII.GetBytes(data);
-            int timeout = 120;
-
             int discarded = 0;
 
             for (int i = 0; i < timesToPing; i++) {

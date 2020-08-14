@@ -8,10 +8,13 @@ namespace PingView_WF_App {
 
         public PingView() {
             InitializeComponent();
+            Pinger.Init();
         }
 
         private void PingButton_Click(object sender, EventArgs e) {
+            // setup
             Clear();
+            pingButton.Enabled = false;
             string ipText = ipTextbox.Text.Trim();
 
             // check if ip is valid
@@ -26,12 +29,9 @@ namespace PingView_WF_App {
                         if (Pinger.Reply.Address != null) {
                             string host = Pinger.Reply.Address.ToString();
                             resultLabel.Text = $"{ping}ms -- {host} ({MAX_TTL_QUERIES} packets)";
-                        }
-                    }
-                    else {
-                        // discard if in progress
-                        if (!Pinger.InProgress) {
-                            ShowErrorNetworkError();
+
+                            pingButton.Enabled = true;
+                            return;
                         }
                     }
                 }
@@ -42,12 +42,9 @@ namespace PingView_WF_App {
                             double ping = Pinger.Reply.RoundtripTime;
                             string host = Pinger.Reply.Address.ToString();
                             resultLabel.Text = $"{ping}ms -- {host} (1 packet)";
-                        }
-                    }
-                    else {
-                        // discard if in progress
-                        if (!Pinger.InProgress) {
-                            ShowErrorNetworkError();
+
+                            pingButton.Enabled = true;
+                            return;
                         }
                     }
                 }
@@ -56,6 +53,10 @@ namespace PingView_WF_App {
             else {
                 ShowErrorInvalidIP();
             }
+
+            // network error
+            ShowErrorNetworkError();
+            pingButton.Enabled = true;
         }
 
         private void ShowErrorInvalidIP() {
