@@ -10,7 +10,7 @@ namespace PingView_WF_App {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PingView());
+            Application.Run(new PingViewForm());
         }
     }
 }

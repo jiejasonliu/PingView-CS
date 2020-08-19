@@ -2,11 +2,11 @@
 using System.Windows.Forms;
 
 namespace PingView_WF_App {
-    public partial class PingView : Form {
+    public partial class PingViewForm : Form {
 
         private const int MAX_TTL_QUERIES = 10;
 
-        public PingView() {
+        public PingViewForm() {
             InitializeComponent();
             Pinger.Init();
         }
